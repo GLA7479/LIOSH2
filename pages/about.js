@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Image from "next/image";
@@ -12,7 +11,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 h-[70px] flex justify-between items-center">
         
         {/* לוגו בצד שמאל */}
-        <Link href="/" className="flex items-center gap-3 relative top-1">
+        <a href={instagramLink} target="_blank" className="flex items-center gap-3 relative top-1">
           <Image
             src="/images/logo.png"
             alt="LIOSH Logo"
@@ -23,23 +22,18 @@ export default function Header() {
           <span className="text-3xl font-bold tracking-wide text-yellow-400 font-[Raleway]">
             LIOSH Token
           </span>
-        </Link>
+        </a>
 
-        {/* 🔹 תפריט בצד ימין */}
+        {/* תפריט למחשב – בצד ימין */}
         <div className="flex-1 flex justify-end">
-          <nav className="hidden md:flex space-x-5 text-lg font-semibold font-[Raleway]">
-            <a href={instagramLink} target="_blank" className="hover:text-white">Home</a>
-            <a href={instagramLink} target="_blank" className="hover:text-white">About</a>
-            <a href={instagramLink} target="_blank" className="hover:text-white">Tokenomics</a>
-            <a href={instagramLink} target="_blank" className="hover:text-white">Presale</a>
-            <a href={instagramLink} target="_blank" className="hover:text-white">Staking</a>
-            <a href={instagramLink} target="_blank" className="hover:text-white">Gallery</a>
-            <a href={instagramLink} target="_blank" className="hover:text-white">Whitepaper</a>
-            <a href={instagramLink} target="_blank" className="hover:text-white">Contact Us</a>
+          <nav className="hidden md:flex space-x-6 text-lg font-semibold font-[Raleway]">
+            {["Home","About","Tokenomics","Presale","Staking","Gallery","Whitepaper","Contact Us"].map((item, i) => (
+              <a key={i} href={instagramLink} target="_blank" className="hover:text-white">{item}</a>
+            ))}
           </nav>
         </div>
 
-        {/* 🔹 תפריט מובייל */}
+        {/* תפריט מובייל */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden text-3xl focus:outline-none ml-4"
@@ -48,17 +42,15 @@ export default function Header() {
         </button>
       </div>
 
+      {/* תפריט מובייל פתוח */}
       {isOpen && (
         <nav className="md:hidden bg-gray-800 text-yellow-400 px-6 py-4 font-[Raleway]">
           <div className="flex flex-col items-end space-y-4 text-lg font-semibold">
-            <a href={instagramLink} target="_blank" onClick={() => setIsOpen(false)}>Home</a>
-            <a href={instagramLink} target="_blank" onClick={() => setIsOpen(false)}>About</a>
-            <a href={instagramLink} target="_blank" onClick={() => setIsOpen(false)}>Tokenomics</a>
-            <a href={instagramLink} target="_blank" onClick={() => setIsOpen(false)}>Presale</a>
-            <a href={instagramLink} target="_blank" onClick={() => setIsOpen(false)}>Staking</a>
-            <a href={instagramLink} target="_blank" onClick={() => setIsOpen(false)}>Gallery</a>
-            <a href={instagramLink} target="_blank" onClick={() => setIsOpen(false)}>Whitepaper</a>
-            <a href={instagramLink} target="_blank" onClick={() => setIsOpen(false)}>Contact Us</a>
+            {["Home","About","Tokenomics","Presale","Staking","Gallery","Whitepaper","Contact Us"].map((item, i) => (
+              <a key={i} href={instagramLink} target="_blank" onClick={() => setIsOpen(false)}>
+                {item}
+              </a>
+            ))}
           </div>
         </nav>
       )}
