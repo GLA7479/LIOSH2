@@ -6,6 +6,10 @@ import Link from "next/link";
 import Head from "next/head";
 
 export default function About() {
+  // ✅ בוחר את הסרטון לפי שם העמוד
+  const pageName = "about";
+  const videoSrc = `/videos/${pageName}-bg.mp4`;
+
   return (
     <>
       <Head>
@@ -23,18 +27,17 @@ export default function About() {
         transition={{ duration: 1 }}
         style={{ fontFamily: "'Montserrat', sans-serif" }}
       >
-        {/* 🔹 רקע וידאו */}
+        {/* ✅ רקע וידאו ייעודי לעמוד */}
         <video
           autoPlay
           muted
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
-          src="/videos/home-bg.mp4"
+          src={videoSrc}
         />
 
         <div className="relative z-10 w-full max-w-6xl bg-black/40 p-6 rounded-xl backdrop-blur-sm">
-
           {/* 🔹 חלק פתיחה */}
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-12">
             <div className="flex-shrink-0">
@@ -114,7 +117,7 @@ export default function About() {
               ))}
             </div>
 
-            {/* 🔹 כפתור Join Presale */}
+            {/* 🔹 Join Presale Button */}
             <div className="text-center">
               <Link href="/presale">
                 <button className="bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-500 px-8 py-4 rounded-xl text-lg font-bold text-black hover:scale-105 transition shadow-lg">
