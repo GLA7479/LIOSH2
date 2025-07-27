@@ -6,8 +6,6 @@ import Link from "next/link";
 import Head from "next/head";
 
 export default function About() {
-  const pageName = "about";
-
   return (
     <>
       <Head>
@@ -18,6 +16,7 @@ export default function About() {
       </Head>
 
       <Header />
+
       <motion.main
         className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden px-6 pt-28"
         initial={{ opacity: 0 }}
@@ -25,35 +24,30 @@ export default function About() {
         transition={{ duration: 1 }}
         style={{ fontFamily: "'Montserrat', sans-serif" }}
       >
-        {/* ✅ רקע וידאו לשולחן עבודה */}
+        {/* 🎥 וידאו כרקע מותאם למובייל ודסקטופ */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="hidden sm:block absolute inset-0 w-full h-full object-cover -z-10"
-          src={`/videos/${pageName}-bg.mp4`}
+          className="absolute inset-0 w-full h-full object-cover object-center -z-10"
+          src="/videos/about-bg.mp4"
         />
+        <div className="absolute inset-0 bg-black/50 -z-10"></div>
 
-        {/* ✅ תמונה מוקטנת למובייל */}
-        <img
-          src={`/images/${pageName}-bg-mobile.jpg`}
-          alt="Background"
-          className="block sm:hidden w-full max-h-[40vh] object-cover object-top"
-        />
-
-        <div className="relative z-10 w-full max-w-6xl bg-black/40 p-6 rounded-xl backdrop-blur-sm">
+        <div className="relative z-10 w-full max-w-6xl p-6 rounded-xl">
           {/* 🔹 חלק פתיחה */}
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-12">
             <div className="flex-shrink-0">
               <Image
                 src="/images/lio.png"
                 alt="LIO the Shiba Inu"
-                width={300}
-                height={300}
-                className="rounded-2xl shadow-lg border-2 border-cyan-300"
+                width={250}
+                height={250}
+                className="rounded-2xl shadow-lg border-2 border-cyan-300 mx-auto md:mx-0"
               />
             </div>
+
             <div className="text-center md:text-left max-w-xl">
               <h1 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
                 About LIOSH Token
@@ -74,7 +68,7 @@ export default function About() {
             <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent drop-shadow-md">
               🌟 Our Mission & Vision
             </h2>
-            <p className="text-lg text-cyan-100 max-w-3xl mx-auto drop-shadow-[0_0_6px_rgba(0,0,0,0.8)] mb-4">
+            <p className="text-lg text-cyan-100 max-w-3xl mx-auto mb-4 drop-shadow-[0_0_6px_rgba(0,0,0,0.8)]">
               Our mission is to build a fun, strong, and rewarding crypto community inspired by LIO.
               We aim to combine entertainment, utility, and community-driven growth.
             </p>
@@ -95,7 +89,10 @@ export default function About() {
                 { title: "Real Utility", text: "Staking rewards, presale benefits, and future NFT integrations." },
                 { title: "Fun & Value", text: "A meme coin that is both fun and built for long-term growth." }
               ].map((item, i) => (
-                <div key={i} className="bg-gray-900/60 p-6 rounded-xl shadow-lg hover:scale-105 transition">
+                <div
+                  key={i}
+                  className="bg-gray-900/70 p-6 rounded-xl shadow-lg hover:scale-105 transition"
+                >
                   <h3 className="text-xl font-bold text-purple-300 mb-2">{item.title}</h3>
                   <p className="text-cyan-100">{item.text}</p>
                 </div>
@@ -115,7 +112,10 @@ export default function About() {
                 { phase: "Phase 3", text: "Exchange Listings, Staking Launch" },
                 { phase: "Phase 4", text: "NFTs, Metaverse, Major Partnerships" }
               ].map((phase, i) => (
-                <div key={i} className="p-6 bg-gray-900/60 rounded-xl shadow-lg hover:scale-105 transition">
+                <div
+                  key={i}
+                  className="p-6 bg-gray-900/70 rounded-xl shadow-lg hover:scale-105 transition"
+                >
                   <h3 className="text-xl font-bold text-yellow-300 mb-2">{phase.phase}</h3>
                   <p className="text-cyan-100">{phase.text}</p>
                 </div>
@@ -133,6 +133,7 @@ export default function About() {
           </section>
         </div>
       </motion.main>
+
       <Footer />
     </>
   );
