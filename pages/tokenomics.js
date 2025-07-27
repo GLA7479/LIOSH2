@@ -1,7 +1,4 @@
-import Link from "next/link";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
-import { motion } from "framer-motion";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
@@ -9,80 +6,63 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Tokenomics() {
   const data = {
-    labels: [
-      "Presale (40%)",
-      "Liquidity & Marketing (30%)",
-      "Staking Rewards (20%)",
-      "Team & Advisors (10%)",
-    ],
+    labels: ["Presale", "Liquidity", "Staking Rewards", "Team & Advisors", "Marketing"],
     datasets: [
       {
-        data: [40, 30, 20, 10],
-        backgroundColor: ["#facc15", "#3b82f6", "#22c55e", "#a855f7"],
-        borderWidth: 1,
+        data: [40, 30, 20, 5, 5],
+        backgroundColor: [
+          "#FACC15",
+          "#22D3EE",
+          "#4ADE80",
+          "#F472B6",
+          "#A78BFA",
+        ],
+        borderColor: "#111",
+        borderWidth: 2,
       },
     ],
   };
 
   return (
-    <>
+    <div className="bg-black min-h-screen text-white">
       <Header />
-      <motion.main
-        className="relative min-h-screen text-white flex flex-col items-center justify-center p-6 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        {/* 🔹 וידאו רקע */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          src="/videos/gallery-bg.mp4"  // אותו וידאו כמו בעמוד הגלריה
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-70 z-0"></div>
+      <div className="max-w-5xl mx-auto pt-32 px-4 text-center">
+        <h1 className="text-4xl md:text-6xl font-extrabold text-yellow-400 mb-6">
+          📊 Tokenomics
+        </h1>
+        <p className="text-lg md:text-xl text-gray-300 mb-10">
+          Overview of LIOSH Token distribution and allocation
+        </p>
 
-        <div className="relative z-10 max-w-3xl text-center">
-          <h1 className="text-4xl text-yellow-400 font-bold mb-6">📊 LIOSH Tokenomics</h1>
-          <p className="mb-6 text-lg">
-            Detailed breakdown of LIOSH token allocation to ensure transparency and sustainable growth.
-          </p>
-
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-10">
+          <div className="w-full md:w-1/2">
             <Pie data={data} />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mb-6">
-            <div className="p-4 bg-gray-900 rounded-lg">
-              <h3 className="text-yellow-400 font-bold">Presale – 40%</h3>
-              <p>Reserved for early investors during presale stages.</p>
+          <div className="w-full md:w-1/2 space-y-4">
+            <div className="p-4 bg-gray-900 rounded-lg shadow-lg">
+              <h3 className="text-xl font-bold text-yellow-400">Presale</h3>
+              <p>40% allocated for early investors</p>
             </div>
-            <div className="p-4 bg-gray-900 rounded-lg">
-              <h3 className="text-yellow-400 font-bold">Liquidity & Marketing – 30%</h3>
-              <p>For exchange listings, liquidity pools, and promotions.</p>
+            <div className="p-4 bg-gray-900 rounded-lg shadow-lg">
+              <h3 className="text-xl font-bold text-yellow-400">Liquidity</h3>
+              <p>30% locked to ensure stable trading</p>
             </div>
-            <div className="p-4 bg-gray-900 rounded-lg">
-              <h3 className="text-yellow-400 font-bold">Staking Rewards – 20%</h3>
-              <p>Incentives for long-term holders through staking pools.</p>
+            <div className="p-4 bg-gray-900 rounded-lg shadow-lg">
+              <h3 className="text-xl font-bold text-yellow-400">Staking Rewards</h3>
+              <p>20% dedicated to staking incentives</p>
             </div>
-            <div className="p-4 bg-gray-900 rounded-lg">
-              <h3 className="text-yellow-400 font-bold">Team & Advisors – 10%</h3>
-              <p>Allocated to the core team and advisors (locked).</p>
+            <div className="p-4 bg-gray-900 rounded-lg shadow-lg">
+              <h3 className="text-xl font-bold text-yellow-400">Team & Advisors</h3>
+              <p>5% locked for long-term growth</p>
             </div>
-          </div>
-
-          <div className="text-center">
-            <Link href="/">
-              <button className="bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold text-lg hover:bg-yellow-500 transition transform hover:scale-105">
-                ⬅ Back to Home
-              </button>
-            </Link>
+            <div className="p-4 bg-gray-900 rounded-lg shadow-lg">
+              <h3 className="text-xl font-bold text-yellow-400">Marketing</h3>
+              <p>5% reserved for promotions and growth</p>
+            </div>
           </div>
         </div>
-      </motion.main>
-      <Footer />
-    </>
+      </div>
+    </div>
   );
 }
