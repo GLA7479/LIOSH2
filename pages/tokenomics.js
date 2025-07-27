@@ -10,13 +10,7 @@ export default function Tokenomics() {
     datasets: [
       {
         data: [40, 30, 20, 5, 5],
-        backgroundColor: [
-          "#FACC15",
-          "#22D3EE",
-          "#4ADE80",
-          "#F472B6",
-          "#A78BFA",
-        ],
+        backgroundColor: ["#FACC15", "#22D3EE", "#4ADE80", "#F472B6", "#A78BFA"],
         borderColor: "#111",
         borderWidth: 2,
       },
@@ -26,40 +20,42 @@ export default function Tokenomics() {
   return (
     <div className="bg-black min-h-screen text-white">
       <Header />
-      <div className="max-w-5xl mx-auto pt-32 px-4 text-center">
-        <h1 className="text-4xl md:text-6xl font-extrabold text-yellow-400 mb-6">
+      <div className="max-w-6xl mx-auto pt-28 px-4 text-center">
+        <h1 className="text-3xl md:text-5xl font-extrabold text-yellow-400 mb-4">
           📊 Tokenomics
         </h1>
-        <p className="text-lg md:text-xl text-gray-300 mb-10">
+        <p className="text-base md:text-lg text-gray-300 mb-8">
           Overview of LIOSH Token distribution and allocation
         </p>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-10">
-          <div className="w-full md:w-1/2">
-            <Pie data={data} />
+        {/* Grid שמתאים לנייד ולמסך רחב */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          {/* תרשים */}
+          <div className="flex justify-center">
+            <div className="w-[90%] sm:w-[70%] md:w-[80%] lg:w-[60%]">
+              <Pie data={data} />
+            </div>
           </div>
 
-          <div className="w-full md:w-1/2 space-y-4">
-            <div className="p-4 bg-gray-900 rounded-lg shadow-lg">
-              <h3 className="text-xl font-bold text-yellow-400">Presale</h3>
-              <p>40% allocated for early investors</p>
-            </div>
-            <div className="p-4 bg-gray-900 rounded-lg shadow-lg">
-              <h3 className="text-xl font-bold text-yellow-400">Liquidity</h3>
-              <p>30% locked to ensure stable trading</p>
-            </div>
-            <div className="p-4 bg-gray-900 rounded-lg shadow-lg">
-              <h3 className="text-xl font-bold text-yellow-400">Staking Rewards</h3>
-              <p>20% dedicated to staking incentives</p>
-            </div>
-            <div className="p-4 bg-gray-900 rounded-lg shadow-lg">
-              <h3 className="text-xl font-bold text-yellow-400">Team & Advisors</h3>
-              <p>5% locked for long-term growth</p>
-            </div>
-            <div className="p-4 bg-gray-900 rounded-lg shadow-lg">
-              <h3 className="text-xl font-bold text-yellow-400">Marketing</h3>
-              <p>5% reserved for promotions and growth</p>
-            </div>
+          {/* כרטיסיות */}
+          <div className="space-y-4">
+            {[
+              { title: "Presale", text: "40% allocated for early investors" },
+              { title: "Liquidity", text: "30% locked to ensure stable trading" },
+              { title: "Staking Rewards", text: "20% dedicated to staking incentives" },
+              { title: "Team & Advisors", text: "5% locked for long-term growth" },
+              { title: "Marketing", text: "5% reserved for promotions and growth" },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="p-4 bg-gray-900 rounded-lg shadow-lg hover:scale-105 transition"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-yellow-400">
+                  {item.title}
+                </h3>
+                <p className="text-sm md:text-base">{item.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
