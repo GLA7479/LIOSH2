@@ -11,6 +11,7 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* 🔹 Background Video */}
         <video
           autoPlay
           muted
@@ -21,26 +22,43 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-black bg-opacity-60 z-0"></div>
 
+        {/* 🔹 Hero Content */}
         <div className="relative z-10 text-center max-w-2xl p-4">
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-yellow-400 mb-4">
+          <motion.h1
+            className="text-4xl sm:text-6xl font-extrabold text-yellow-400 mb-4 drop-shadow-lg"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
             LIOSH Token
-          </h1>
-          <p className="text-lg sm:text-xl mb-6 text-white">
-            The ultimate meme coin inspired by Shiba Inu! Join our presale and be part of the next crypto revolution.
-          </p>
+          </motion.h1>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.p
+            className="text-lg sm:text-xl mb-6 text-white"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            The ultimate meme coin inspired by Shiba Inu! Join our presale and be part of the next crypto revolution.
+          </motion.p>
+
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
             <Link href="/presale">
-              <button className="bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold text-lg hover:bg-yellow-500 transition transform hover:scale-105">
+              <button className="bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold text-lg hover:bg-yellow-500 hover:scale-105 transition transform shadow-lg">
                 🚀 Join Presale
               </button>
             </Link>
             <Link href="/staking">
-              <button className="bg-gray-900 border border-yellow-400 text-yellow-400 px-6 py-3 rounded-lg font-bold text-lg hover:bg-yellow-400 hover:text-black transition transform hover:scale-105">
+              <button className="bg-gray-900 border border-yellow-400 text-yellow-400 px-6 py-3 rounded-lg font-bold text-lg hover:bg-yellow-400 hover:text-black hover:scale-105 transition transform shadow-lg">
                 💰 Stake Now
               </button>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </motion.main>
 
@@ -48,22 +66,21 @@ export default function Home() {
       <section className="bg-black text-white py-16">
         <h2 className="text-4xl text-yellow-400 font-bold text-center mb-10">🚀 Roadmap</h2>
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 text-center px-4">
-          <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
-            <h3 className="text-xl font-bold mb-2">Phase 1</h3>
-            <p>Token Launch, Website, Community Building</p>
-          </div>
-          <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
-            <h3 className="text-xl font-bold mb-2">Phase 2</h3>
-            <p>Presale Stages, Marketing Campaigns</p>
-          </div>
-          <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
-            <h3 className="text-xl font-bold mb-2">Phase 3</h3>
-            <p>Exchange Listings, Staking Launch</p>
-          </div>
-          <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
-            <h3 className="text-xl font-bold mb-2">Phase 4</h3>
-            <p>Major Partnerships & Metaverse Utility</p>
-          </div>
+          {[
+            { title: "Phase 1", text: "Token Launch, Website, Community Building" },
+            { title: "Phase 2", text: "Presale Stages, Marketing Campaigns" },
+            { title: "Phase 3", text: "Exchange Listings, Staking Launch" },
+            { title: "Phase 4", text: "Major Partnerships & Metaverse Utility" },
+          ].map((phase, i) => (
+            <motion.div
+              key={i}
+              className="p-6 bg-gray-800 rounded-lg shadow-lg hover:scale-105 transition transform"
+              whileHover={{ scale: 1.05 }}
+            >
+              <h3 className="text-xl font-bold mb-2 text-yellow-400">{phase.title}</h3>
+              <p>{phase.text}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
@@ -71,31 +88,27 @@ export default function Home() {
       <section className="bg-gray-900 text-white py-16">
         <h2 className="text-4xl text-yellow-400 font-bold text-center mb-10">📊 Tokenomics</h2>
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-center px-4">
-          <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
-            <h3 className="text-xl font-bold mb-2">Total Supply</h3>
-            <p>1,000,000,000,000 LIOSH</p>
-          </div>
-          <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
-            <h3 className="text-xl font-bold mb-2">Presale Allocation</h3>
-            <p>40% – Available for early investors</p>
-          </div>
-          <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
-            <h3 className="text-xl font-bold mb-2">Liquidity & Marketing</h3>
-            <p>30% – Locked for liquidity & promotions</p>
-          </div>
-          <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
-            <h3 className="text-xl font-bold mb-2">Staking Rewards</h3>
-            <p>20% – For staking pools and incentives</p>
-          </div>
-          <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
-            <h3 className="text-xl font-bold mb-2">Team & Advisors</h3>
-            <p>10% – Team allocation (locked)</p>
-          </div>
+          {[
+            { title: "Total Supply", text: "1,000,000,000,000 LIOSH" },
+            { title: "Presale Allocation", text: "40% – Available for early investors" },
+            { title: "Liquidity & Marketing", text: "30% – Locked for liquidity & promotions" },
+            { title: "Staking Rewards", text: "20% – For staking pools and incentives" },
+            { title: "Team & Advisors", text: "10% – Team allocation (locked)" },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              className="p-6 bg-gray-800 rounded-lg shadow-lg hover:scale-105 transition transform"
+              whileHover={{ scale: 1.05 }}
+            >
+              <h3 className="text-xl font-bold mb-2 text-yellow-400">{item.title}</h3>
+              <p>{item.text}</p>
+            </motion.div>
+          ))}
         </div>
 
         <div className="text-center mt-8">
           <Link href="/tokenomics">
-            <button className="bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold text-lg hover:bg-yellow-500 transition transform hover:scale-105">
+            <button className="bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold text-lg hover:bg-yellow-500 hover:scale-105 transition transform shadow-lg">
               📊 Learn More
             </button>
           </Link>

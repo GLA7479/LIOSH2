@@ -7,6 +7,14 @@ export default function Footer() {
           <a href="#" className="hover:text-yellow-400">🐦 Twitter</a>
           <a href="#" className="hover:text-yellow-400">💬 Telegram</a>
           <a href="#" className="hover:text-yellow-400">🎮 Discord</a>
+          <a
+            href="https://www.instagram.com/liotheshiba21?igsh=NTljMDY4N2EzMWJu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-yellow-400"
+          >
+            📷 Instagram
+          </a>
         </div>
       </div>
     </footer>
