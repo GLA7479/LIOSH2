@@ -8,23 +8,23 @@ export default function Header() {
 
   return (
     <header className="bg-gradient-to-r from-orange-500 to-yellow-400 text-white shadow-lg fixed w-full z-50">
-      <div className="max-w-7xl mx-auto px-3 py-0.5 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-4 py-1 flex justify-between items-center">
         {/* 🔹 לוגו + שם האתר */}
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-3">
           <Image
             src="/images/logo.png"
             alt="LIOSH Logo"
-            width={80} // 👈 הגדלת לוגו
+            width={80} // 👈 נשאר גדול
             height={80}
             className="rounded-full"
           />
-          <span className="text-2xl sm:text-4xl font-extrabold tracking-wide">
+          <span className="text-3xl sm:text-4xl font-extrabold tracking-wide">
             LIOSH Token
           </span>
         </Link>
 
         {/* 🔹 תפריט למחשב */}
-        <nav className="hidden md:flex space-x-5 text-lg sm:text-xl font-bold">
+        <nav className="hidden md:flex space-x-8 text-xl sm:text-2xl font-bold">
           <Link href="/">Home</Link>
           <Link href="/tokenomics">Tokenomics</Link>
           <Link href="/presale">Presale</Link>
@@ -45,7 +45,7 @@ export default function Header() {
       {/* 🔹 תפריט נפתח במובייל */}
       {isOpen && (
         <nav className="md:hidden bg-orange-500 text-white px-6 py-4">
-          <div className="flex flex-col items-center space-y-5 text-xl font-bold">
+          <div className="flex flex-col items-center space-y-5 text-2xl font-bold">
             <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
             <Link href="/tokenomics" onClick={() => setIsOpen(false)}>Tokenomics</Link>
             <Link href="/presale" onClick={() => setIsOpen(false)}>Presale</Link>
