@@ -1,0 +1,11 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js",
+  "/tokenomics": "pages/tokenomics.js",
+  "/staking": "pages/staking.js",
+  "/gallery": "pages/gallery.js",
+  "/presale": "pages/presale.js",
+  "/whitepaper": "pages/whitepaper.js"
+}
