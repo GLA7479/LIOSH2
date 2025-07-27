@@ -1,7 +1,7 @@
 export default function VideoBackground({ pageName }) {
   return (
     <div className="absolute inset-0 w-full h-full -z-10">
-      {/* ✅ וידאו יוצג רק בדסקטופ */}
+      {/* ✅ וידאו – יוצג רק במסכים גדולים */}
       <video
         autoPlay
         muted
@@ -11,12 +11,11 @@ export default function VideoBackground({ pageName }) {
         src={`/videos/${pageName}-bg.mp4`}
       />
 
-      {/* ✅ תמונה מותאמת למובייל */}
+      {/* ✅ תמונת fallback – תוצג במובייל */}
       <img
         src={`/images/${pageName}-bg-mobile.jpg`}
         alt="Background"
-        className="block sm:hidden w-full h-full object-contain bg-black"
-        style={{ objectFit: "contain" }} // לא יחתוך את התמונה
+        className="block sm:hidden w-full h-full object-cover"
       />
     </div>
   );
