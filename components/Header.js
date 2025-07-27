@@ -12,10 +12,10 @@ export default function Header() {
         {/* 🔹 לוגו + שם האתר */}
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/images/logo.png" // 👈 שים את הלוגו כאן: public/images/logo.png
+            src="/images/logo.png"
             alt="LIOSH Logo"
-            width={40}
-            height={40}
+            width={80}   // פי 2
+            height={80}  // פי 2
             className="rounded-full"
           />
           <span className="text-2xl font-extrabold tracking-wide">
