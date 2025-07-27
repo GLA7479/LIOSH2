@@ -5,10 +5,13 @@ import { motion } from "framer-motion";
 
 export default function Gallery() {
   const [items, setItems] = useState([]);
-  const [videoIndex, setVideoIndex] = useState(0); // ✅ ניהול איזה סרטון מוצג
+  const [videoIndex, setVideoIndex] = useState(0);
 
-  // ✅ שני הסרטונים שיתנגנו ברקע
-  const backgroundVideos = ["/videos/background1.mp4", "/videos/background2.mp4"];
+  // ✅ שמות הסרטונים לפי מה שביקשת
+  const backgroundVideos = [
+    "/videos/gallery-bg1.mp4",
+    "/videos/gallery-bg2.mp4"
+  ];
 
   useEffect(() => {
     fetch("/api/gallery")
@@ -37,9 +40,9 @@ export default function Gallery() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* ✅ וידאו רקע מתחלף */}
+        {/* ✅ סרטון רקע מתחלף עם השמות החדשים */}
         <video
-          key={videoIndex} // גורם לטעינה מחדש בכל מעבר סרטון
+          key={videoIndex}
           autoPlay
           muted
           playsInline
@@ -90,7 +93,6 @@ export default function Gallery() {
           </div>
         )}
 
-        {/* ✅ Modal */}
         {selectedIndex !== null && (
           <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
             <motion.div
