@@ -33,13 +33,15 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <nav className="md:hidden bg-orange-500 text-white px-6 py-4 space-y-3 text-lg font-semibold">
-          <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
-          <Link href="/tokenomics" onClick={() => setIsOpen(false)}>Tokenomics</Link>
-          <Link href="/presale" onClick={() => setIsOpen(false)}>Presale</Link>
-          <Link href="/staking" onClick={() => setIsOpen(false)}>Staking</Link>
-          <Link href="/gallery" onClick={() => setIsOpen(false)}>Gallery</Link>
-          <Link href="/whitepaper" onClick={() => setIsOpen(false)}>Whitepaper</Link>
+        <nav className="md:hidden bg-orange-500 text-white px-6 py-6">
+          <div className="flex flex-col items-center space-y-4 text-lg font-semibold">
+            <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
+            <Link href="/tokenomics" onClick={() => setIsOpen(false)}>Tokenomics</Link>
+            <Link href="/presale" onClick={() => setIsOpen(false)}>Presale</Link>
+            <Link href="/staking" onClick={() => setIsOpen(false)}>Staking</Link>
+            <Link href="/gallery" onClick={() => setIsOpen(false)}>Gallery</Link>
+            <Link href="/whitepaper" onClick={() => setIsOpen(false)}>Whitepaper</Link>
+          </div>
         </nav>
       )}
     </header>
