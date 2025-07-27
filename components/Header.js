@@ -9,11 +9,12 @@ export default function Header() {
   return (
     <header className="bg-gradient-to-r from-orange-500 to-yellow-400 text-white shadow-lg fixed w-full z-50">
       <div className="max-w-7xl mx-auto h-16 px-4 flex justify-between items-center">
+        {/* לוגו ושם האתר נשארים בגודל הקיים */}
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/images/logo.png"
             alt="LIOSH Logo"
-            width={80}   // 🔹 שומר על גודל הלוגו
+            width={80}
             height={80}
             className="rounded-full"
           />
@@ -22,7 +23,8 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex space-x-8 text-xl sm:text-2xl font-bold">
+        {/* 🔹 תפריט למחשב – מוקטן ב־50% */}
+        <nav className="hidden md:flex space-x-8 text-lg font-semibold">
           <Link href="/">Home</Link>
           <Link href="/tokenomics">Tokenomics</Link>
           <Link href="/presale">Presale</Link>
@@ -31,6 +33,7 @@ export default function Header() {
           <Link href="/whitepaper">Whitepaper</Link>
         </nav>
 
+        {/* 🔹 כפתור תפריט למובייל */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden text-3xl focus:outline-none"
@@ -39,9 +42,10 @@ export default function Header() {
         </button>
       </div>
 
+      {/* 🔹 תפריט נפתח במובייל */}
       {isOpen && (
         <nav className="md:hidden bg-orange-500 text-white px-6 py-4">
-          <div className="flex flex-col items-center space-y-5 text-2xl font-bold">
+          <div className="flex flex-col items-center space-y-5 text-lg font-semibold">
             <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
             <Link href="/tokenomics" onClick={() => setIsOpen(false)}>Tokenomics</Link>
             <Link href="/presale" onClick={() => setIsOpen(false)}>Presale</Link>
