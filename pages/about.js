@@ -4,11 +4,10 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
+import VideoBackground from "../components/VideoBackground";
 
 export default function About() {
-  // ✅ בוחר את הסרטון לפי שם העמוד
   const pageName = "about";
-  const videoSrc = `/videos/${pageName}-bg.mp4`;
 
   return (
     <>
@@ -27,15 +26,8 @@ export default function About() {
         transition={{ duration: 1 }}
         style={{ fontFamily: "'Montserrat', sans-serif" }}
       >
-        {/* ✅ רקע וידאו ייעודי לעמוד */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          src={videoSrc}
-        />
+        {/* ✅ רכיב חדש במקום הוידאו */}
+        <VideoBackground pageName={pageName} />
 
         <div className="relative z-10 w-full max-w-6xl bg-black/40 p-6 rounded-xl backdrop-blur-sm">
           {/* 🔹 חלק פתיחה */}
