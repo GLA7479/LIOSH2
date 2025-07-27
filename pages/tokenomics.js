@@ -18,9 +18,23 @@ export default function Tokenomics() {
   };
 
   return (
-    <div className="bg-black min-h-screen text-white">
+    <div className="relative bg-black min-h-screen text-white overflow-hidden">
+      {/* 🔹 וידאו רקע */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-20 -z-10"
+        src="/videos/tokenomics-bg.mp4" // 👈 שים כאן את קובץ הווידאו
+      />
+
+      {/* שכבת כהות כדי לשפר קריאות */}
+      <div className="absolute inset-0 bg-black bg-opacity-60 -z-10"></div>
+
       <Header />
-      <div className="max-w-6xl mx-auto pt-28 px-4 text-center">
+
+      <div className="max-w-6xl mx-auto pt-28 px-4 text-center relative z-10">
         <h1 className="text-3xl md:text-5xl font-extrabold text-yellow-400 mb-4">
           📊 Tokenomics
         </h1>
@@ -28,7 +42,7 @@ export default function Tokenomics() {
           Overview of LIOSH Token distribution and allocation
         </p>
 
-        {/* Grid שמתאים לנייד ולמסך רחב */}
+        {/* Grid מתאים לנייד ולמסך רחב */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           {/* תרשים */}
           <div className="flex justify-center">
