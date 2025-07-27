@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <header className="bg-gradient-to-r from-orange-500 to-yellow-400 text-white shadow-lg fixed w-full z-50">
       <div className="max-w-7xl mx-auto h-16 px-4 flex justify-between items-center">
-        {/* לוגו ושם האתר נשארים בגודל הקיים */}
+        {/* לוגו ושם האתר */}
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/images/logo.png"
@@ -23,8 +23,8 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* 🔹 תפריט למחשב – מוקטן ב־50% */}
-        <nav className="hidden md:flex space-x-8 text-lg font-semibold">
+        {/* 🔹 תפריט למחשב – מוקטן עם פחות רווחים */}
+        <nav className="hidden md:flex space-x-4 text-lg font-semibold">
           <Link href="/">Home</Link>
           <Link href="/tokenomics">Tokenomics</Link>
           <Link href="/presale">Presale</Link>
