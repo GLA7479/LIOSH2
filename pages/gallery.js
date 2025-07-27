@@ -5,13 +5,6 @@ import { motion } from "framer-motion";
 
 export default function Gallery() {
   const [items, setItems] = useState([]);
-  const [videoIndex, setVideoIndex] = useState(0);
-
-  // ✅ שמות הסרטונים לפי מה שביקשת
-  const backgroundVideos = [
-    "/videos/gallery-bg1.mp4",
-    "/videos/gallery-bg2.mp4"
-  ];
 
   useEffect(() => {
     fetch("/api/gallery")
@@ -40,15 +33,14 @@ export default function Gallery() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* ✅ סרטון רקע מתחלף עם השמות החדשים */}
+        {/* ✅ רקע וידאו אחד */}
         <video
-          key={videoIndex}
           autoPlay
           muted
+          loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover -z-10"
-          src={backgroundVideos[videoIndex]}
-          onEnded={() => setVideoIndex((videoIndex + 1) % backgroundVideos.length)}
+          src="/videos/gallery-bg.mp4" // 🔹 שם הסרטון שלך
         />
         <div className="absolute inset-0 bg-black/30 -z-10"></div>
 
@@ -76,17 +68,12 @@ export default function Gallery() {
                     className="w-40 h-40 object-cover"
                   />
                 ) : (
-                  <>
-                    <video
-                      src={item.src}
-                      className="w-40 h-40 object-cover"
-                      muted
-                      playsInline
-                    />
-                    <span className="absolute bottom-2 right-2 bg-black/60 text-white px-2 py-1 text-xs rounded">
-                      🎥 Video
-                    </span>
-                  </>
+                  <video
+                    src={item.src}
+                    className="w-40 h-40 object-cover"
+                    muted
+                    playsInline
+                  />
                 )}
               </motion.div>
             ))}

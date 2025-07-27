@@ -24,12 +24,14 @@ export default function Header() {
 
         <nav className="hidden md:flex space-x-3 text-lg font-semibold font-[Raleway]">
           <Link href="/" className="hover:text-white">Home</Link>
-          <Link href="/about" className="hover:text-white">About</Link> {/* ✅ חדש */}
+          <Link href="/about" className="hover:text-white">About</Link>
           <Link href="/tokenomics" className="hover:text-white">Tokenomics</Link>
           <Link href="/presale" className="hover:text-white">Presale</Link>
           <Link href="/staking" className="hover:text-white">Staking</Link>
           <Link href="/gallery" className="hover:text-white">Gallery</Link>
           <Link href="/whitepaper" className="hover:text-white">Whitepaper</Link>
+          {/* ✅ קישור חדש */}
+          <Link href="/contact" className="hover:text-white">Contact Us</Link>
         </nav>
 
         <button
@@ -44,12 +46,14 @@ export default function Header() {
         <nav className="md:hidden bg-gray-800 text-yellow-400 px-6 py-4 font-[Raleway]">
           <div className="flex flex-col items-center space-y-4 text-lg font-semibold">
             <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
-            <Link href="/about" onClick={() => setIsOpen(false)}>About</Link> {/* ✅ חדש */}
+            <Link href="/about" onClick={() => setIsOpen(false)}>About</Link>
             <Link href="/tokenomics" onClick={() => setIsOpen(false)}>Tokenomics</Link>
             <Link href="/presale" onClick={() => setIsOpen(false)}>Presale</Link>
             <Link href="/staking" onClick={() => setIsOpen(false)}>Staking</Link>
             <Link href="/gallery" onClick={() => setIsOpen(false)}>Gallery</Link>
             <Link href="/whitepaper" onClick={() => setIsOpen(false)}>Whitepaper</Link>
+            {/* ✅ גם בתפריט מובייל */}
+            <Link href="/contact" onClick={() => setIsOpen(false)}>Contact Us</Link>
           </div>
         </nav>
       )}
