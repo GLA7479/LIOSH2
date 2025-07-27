@@ -9,13 +9,12 @@ export default function Header() {
   return (
     <header className="bg-gradient-to-r from-orange-500 to-yellow-400 text-white shadow-lg fixed w-full z-50">
       <div className="max-w-7xl mx-auto px-4 py-1 flex justify-between items-center">
-        {/* 🔹 לוגו + שם האתר */}
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/images/logo.png"
             alt="LIOSH Logo"
-            width={80} // 👈 נשאר גדול
-            height={80}
+            width={80} // 👈 נשאר אותו גודל
+            height={80} // 👈 נשאר אותו גודל
             className="rounded-full"
           />
           <span className="text-3xl sm:text-4xl font-extrabold tracking-wide">
@@ -23,7 +22,6 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* 🔹 תפריט למחשב */}
         <nav className="hidden md:flex space-x-8 text-xl sm:text-2xl font-bold">
           <Link href="/">Home</Link>
           <Link href="/tokenomics">Tokenomics</Link>
@@ -33,7 +31,6 @@ export default function Header() {
           <Link href="/whitepaper">Whitepaper</Link>
         </nav>
 
-        {/* 🔹 כפתור תפריט מובייל */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden text-3xl focus:outline-none"
@@ -42,7 +39,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* 🔹 תפריט נפתח במובייל */}
       {isOpen && (
         <nav className="md:hidden bg-orange-500 text-white px-6 py-4">
           <div className="flex flex-col items-center space-y-5 text-2xl font-bold">
