@@ -11,11 +11,11 @@ export default function VideoBackground({ pageName }) {
         src={`/videos/${pageName}-bg.mp4`}
       />
 
-      {/* ✅ תמונת fallback – תוצג במובייל */}
+      {/* ✅ תמונת fallback – מותאמת למובייל */}
       <img
         src={`/images/${pageName}-bg-mobile.jpg`}
         alt="Background"
-        className="block sm:hidden w-full h-full object-cover"
+        className="block sm:hidden w-full h-[60vh] object-cover object-top"
       />
     </div>
   );
