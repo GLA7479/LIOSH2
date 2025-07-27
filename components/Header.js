@@ -8,13 +8,13 @@ export default function Header() {
 
   return (
     <header className="bg-gradient-to-r from-orange-500 to-yellow-400 text-white shadow-lg fixed w-full z-50">
-      <div className="max-w-7xl mx-auto px-4 py-1 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto h-16 px-4 flex justify-between items-center">
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/images/logo.png"
             alt="LIOSH Logo"
-            width={80} // 👈 נשאר אותו גודל
-            height={80} // 👈 נשאר אותו גודל
+            width={80}   // 🔹 שומר על גודל הלוגו
+            height={80}
             className="rounded-full"
           />
           <span className="text-3xl sm:text-4xl font-extrabold tracking-wide">
