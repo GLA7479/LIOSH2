@@ -5,6 +5,10 @@ import { motion } from "framer-motion";
 
 export default function Gallery() {
   const [items, setItems] = useState([]);
+  const [videoIndex, setVideoIndex] = useState(0); // ✅ ניהול איזה סרטון מוצג
+
+  // ✅ שני הסרטונים שיתנגנו ברקע
+  const backgroundVideos = ["/videos/background1.mp4", "/videos/background2.mp4"];
 
   useEffect(() => {
     fetch("/api/gallery")
@@ -33,14 +37,15 @@ export default function Gallery() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* ✅ רקע וידאו */}
+        {/* ✅ וידאו רקע מתחלף */}
         <video
+          key={videoIndex} // גורם לטעינה מחדש בכל מעבר סרטון
           autoPlay
           muted
-          loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover -z-10"
-          src="/videos/background.mp4"
+          src={backgroundVideos[videoIndex]}
+          onEnded={() => setVideoIndex((videoIndex + 1) % backgroundVideos.length)}
         />
         <div className="absolute inset-0 bg-black/30 -z-10"></div>
 
@@ -108,7 +113,6 @@ export default function Gallery() {
                 />
               )}
 
-              {/* כפתור סגירה */}
               <button
                 onClick={closeModal}
                 className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600"
@@ -116,7 +120,6 @@ export default function Gallery() {
                 ✖ Close
               </button>
 
-              {/* ניווט */}
               <button
                 onClick={prevItem}
                 className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-700 text-white px-3 py-2 rounded-full hover:bg-gray-500"
