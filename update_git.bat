@@ -1,35 +1,23 @@
 @echo off
 cd /d "%~dp0"
-git diff --quiet
-IF %ERRORLEVEL% EQU 0 (
-    echo ====================================
-    echo ⚠️  אין שינויים לעדכן!
-    echo ====================================
-    timeout /t 3 >nul
-    exit
-)
 
-start powershell -NoExit -Command "& {
-    Write-Host '===============================' -ForegroundColor Cyan
-    Write-Host '📂 Changing directory to LIOTSH2...' -ForegroundColor Yellow
-    Set-Location '%~dp0'
+REM ✅ שלב 1 - הוספת כל השינויים
+git add .
 
-    Write-Host '===============================' -ForegroundColor Cyan
-    Write-Host '🔄 Adding changes...' -ForegroundColor Yellow
-    git add .
+REM ✅ שלב 2 - יצירת commit עם תאריך ושעה (גם אם אין שינויים)
+for /f "tokens=1-4 delims=/ " %%a in ('date /t') do set DATE=%%d-%%b-%%c
+for /f "tokens=1-2 delims=: " %%a in ('time /t') do set TIME=%%a-%%b
+git commit --allow-empty -m "Auto update - %DATE% %TIME%"
 
-    Write-Host '===============================' -ForegroundColor Cyan
-    Write-Host '🔄 Committing changes...' -ForegroundColor Yellow
-    git commit -m 'Auto Update'
+REM ✅ שלב 3 - ביצוע push ל-GitHub
+git push origin main
 
-    Write-Host '===============================' -ForegroundColor Cyan
-    Write-Host '🔄 Pulling latest changes...' -ForegroundColor Yellow
-    git pull origin main --rebase
+echo.
+echo ==========================================
+echo 🚀 השינויים הועלו ל-GitHub בהצלחה!
+echo ==========================================
 
-    Write-Host '===============================' -ForegroundColor Cyan
-    Write-Host '🚀 Pushing to GitHub...' -ForegroundColor Yellow
-    git push origin main
+REM ✅ שלב 4 - פתיחת האתר שלך ב-Vercel
+start https://liosh-2.vercel.app/
 
-    Write-Host '===============================' -ForegroundColor Cyan
-    Write-Host '✅ Done! Window will stay open' -ForegroundColor Green
-}"
+pause
