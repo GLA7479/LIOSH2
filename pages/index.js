@@ -1,130 +1,141 @@
-import Layout from "../components/Layout";
+import { useState, useEffect } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { motion } from "framer-motion";
-import Link from "next/link";
 
-export default function Home() {
+export default function Gallery() {
+  const [items, setItems] = useState([]);
+  const [videoIndex, setVideoIndex] = useState(0);
+
+  // ✅ רשימת הסרטונים לרקע
+  const backgroundVideos = ["/videos/home1.mp4", "/videos/home2.mp4"];
+
+  useEffect(() => {
+    fetch("/api/gallery")
+      .then((res) => res.json())
+      .then((data) => {
+        const images = data.images.map((src) => ({ type: "image", src }));
+        const videos = data.videos.map((src) => ({ type: "video", src }));
+        setItems([...images, ...videos]);
+      });
+  }, []);
+
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const openModal = (i) => setSelectedIndex(i);
+  const closeModal = () => setSelectedIndex(null);
+  const prevItem = () =>
+    setSelectedIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
+  const nextItem = () =>
+    setSelectedIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
+
   return (
-    <Layout>
+    <>
+      <Header />
       <motion.main
-        className="relative min-h-screen text-white flex flex-col items-center justify-center overflow-hidden px-4"
+        className="relative min-h-screen flex flex-col items-center justify-center p-6 text-white"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* 🔹 Background Video */}
+        {/* ✅ שני סרטוני רקע מתחלפים */}
         <video
+          key={videoIndex}
           autoPlay
           muted
-          loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          src="/videos/home-bg.mp4"
+          className="absolute inset-0 w-full h-full object-cover -z-10"
+          src={backgroundVideos[videoIndex]}
+          onEnded={() => setVideoIndex((videoIndex + 1) % backgroundVideos.length)}
         />
-        <div className="absolute inset-0 bg-black bg-opacity-60 z-0"></div>
+        <div className="absolute inset-0 bg-black/30 -z-10"></div>
 
-        {/* 🔹 Hero Content */}
-        <div className="relative z-10 text-center max-w-2xl p-4">
-          <motion.h1
-            className="text-4xl sm:text-6xl font-extrabold text-yellow-400 mb-4 drop-shadow-lg"
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            LIOSH Token
-          </motion.h1>
+        <h1 className="text-4xl text-yellow-400 mb-6 font-bold drop-shadow-lg">
+          🐾 LIOSH Gallery
+        </h1>
 
-          <motion.p
-            className="text-lg sm:text-xl mb-6 text-white"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            The ultimate meme coin inspired by Shiba Inu! Join our presale and be part of the next crypto revolution.
-          </motion.p>
+        {items.length === 0 ? (
+          <p className="text-gray-200">Loading gallery...</p>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {items.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="cursor-pointer rounded-lg overflow-hidden hover:scale-105 transform transition relative"
+                onClick={() => openModal(index)}
+              >
+                {item.type === "image" ? (
+                  <img
+                    src={item.src}
+                    alt={`media-${index}`}
+                    className="w-40 h-40 object-cover"
+                  />
+                ) : (
+                  <>
+                    <video
+                      src={item.src}
+                      className="w-40 h-40 object-cover"
+                      muted
+                      playsInline
+                    />
+                    <span className="absolute bottom-2 right-2 bg-black/60 text-white px-2 py-1 text-xs rounded">
+                      🎥 Video
+                    </span>
+                  </>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        )}
 
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-          >
-            <Link href="/presale">
-              <button className="bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold text-lg hover:bg-yellow-500 hover:scale-105 transition transform shadow-lg">
-                🚀 Join Presale
+        {selectedIndex !== null && (
+          <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+            <motion.div
+              className="relative max-w-4xl max-h-[90vh]"
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              {items[selectedIndex].type === "image" ? (
+                <img
+                  src={items[selectedIndex].src}
+                  className="max-h-[90vh] rounded-lg"
+                />
+              ) : (
+                <video
+                  src={items[selectedIndex].src}
+                  autoPlay
+                  controls
+                  className="max-h-[90vh] rounded-lg"
+                />
+              )}
+
+              <button
+                onClick={closeModal}
+                className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600"
+              >
+                ✖ Close
               </button>
-            </Link>
-            <Link href="/staking">
-              <button className="bg-gray-900 border border-yellow-400 text-yellow-400 px-6 py-3 rounded-lg font-bold text-lg hover:bg-yellow-400 hover:text-black hover:scale-105 transition transform shadow-lg">
-                💰 Stake Now
+
+              <button
+                onClick={prevItem}
+                className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-700 text-white px-3 py-2 rounded-full hover:bg-gray-500"
+              >
+                ⬅
               </button>
-            </Link>
-          </motion.div>
-        </div>
+              <button
+                onClick={nextItem}
+                className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-700 text-white px-3 py-2 rounded-full hover:bg-gray-500"
+              >
+                ➡
+              </button>
+            </motion.div>
+          </div>
+        )}
       </motion.main>
-
-      {/* 🔹 Roadmap Section */}
-      <section className="bg-black text-white py-16">
-        <h2 className="text-4xl text-yellow-400 font-bold text-center mb-10">🚀 Roadmap</h2>
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 text-center px-4">
-          {[
-            { title: "Phase 1", text: "Token Launch, Website, Community Building" },
-            { title: "Phase 2", text: "Presale Stages, Marketing Campaigns" },
-            { title: "Phase 3", text: "Exchange Listings, Staking Launch" },
-            { title: "Phase 4", text: "Major Partnerships & Metaverse Utility" },
-          ].map((phase, i) => (
-            <motion.div
-              key={i}
-              className="p-6 bg-gray-800 rounded-lg shadow-lg hover:scale-105 transition transform"
-              whileHover={{ scale: 1.05 }}
-            >
-              <h3 className="text-xl font-bold mb-2 text-yellow-400">{phase.title}</h3>
-              <p>{phase.text}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* 🔹 Tokenomics Section */}
-      <section className="bg-gray-900 text-white py-16">
-        <h2 className="text-4xl text-yellow-400 font-bold text-center mb-10">📊 Tokenomics</h2>
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-center px-4">
-          {[
-            { title: "Total Supply", text: "1,000,000,000,000 LIOSH" },
-            { title: "Presale Allocation", text: "40% – Available for early investors" },
-            { title: "Liquidity & Marketing", text: "30% – Locked for liquidity & promotions" },
-            { title: "Staking Rewards", text: "20% – For staking pools and incentives" },
-            { title: "Team & Advisors", text: "10% – Team allocation (locked)" },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              className="p-6 bg-gray-800 rounded-lg shadow-lg hover:scale-105 transition transform"
-              whileHover={{ scale: 1.05 }}
-            >
-              <h3 className="text-xl font-bold mb-2 text-yellow-400">{item.title}</h3>
-              <p>{item.text}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="text-center mt-8">
-          <Link href="/tokenomics">
-            <button className="bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold text-lg hover:bg-yellow-500 hover:scale-105 transition transform shadow-lg">
-              📊 Learn More
-            </button>
-          </Link>
-        </div>
-      </section>
-
-      {/* 🔹 Contact Section */}
-      <section className="bg-gray-800 text-white py-16">
-        <h2 className="text-3xl text-yellow-400 font-bold text-center mb-6">📩 Get in Touch</h2>
-        <div className="flex justify-center space-x-6 text-lg">
-          <a href="mailto:contact@liosh.com" className="hover:text-yellow-400">📧 Email</a>
-          <a href="#" className="hover:text-yellow-400">🐦 Twitter</a>
-          <a href="#" className="hover:text-yellow-400">💬 Telegram</a>
-          <a href="#" className="hover:text-yellow-400">🌐 Discord</a>
-        </div>
-      </section>
-    </Layout>
+      <Footer />
+    </>
   );
 }
