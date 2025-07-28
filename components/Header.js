@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // ✅ מגדיר לכל כפתור את הנתיב הנכון
+  // רשימת הכפתורים עם הנתיבים
   const menuItems = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
@@ -15,7 +15,11 @@ export default function Header() {
     { name: "Staking", href: "/staking" },
     { name: "Gallery", href: "/gallery" },
     { name: "Whitepaper", href: "/whitepaper" },
-    { name: "Contact Us", href: "https://www.instagram.com/liotheshiba21?igsh=NTljMDY4N2EzMWJu", external: true }
+    {
+      name: "Contact Us",
+      href: "https://www.instagram.com/liotheshiba21?igsh=NTljMDY4N2EzMWJu",
+      external: true,
+    },
   ];
 
   return (
@@ -36,12 +40,18 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* תפריט למחשב – בצד ימין */}
+        {/* תפריט למחשב */}
         <div className="flex-1 flex justify-end">
           <nav className="hidden md:flex space-x-6 text-lg font-semibold font-[Raleway]">
             {menuItems.map((item, i) =>
               item.external ? (
-                <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                <a
+                  key={i}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white"
+                >
                   {item.name}
                 </a>
               ) : (
