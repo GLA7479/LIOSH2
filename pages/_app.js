@@ -1,11 +1,15 @@
 import "../styles/globals.css";
-import FloatingButton from "../components/FloatingButton"; // ✅ מייבאים את הכפתור
+import FloatingButton from "../components/FloatingButton";
+import Header from "../components/Header";
 
 export default function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Component {...pageProps} />
-      <FloatingButton /> {/* ✅ הכפתור הצף */}
+      <Header />
+      <main className="pt-20">
+        <Component {...pageProps} />
+      </main>
+      <FloatingButton />
     </>
   );
 }

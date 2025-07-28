@@ -1,11 +1,10 @@
-import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 
 export default function Whitepaper() {
   return (
     <>
-      <Header />
+      
       <motion.main
         className="relative min-h-screen text-white flex flex-col items-center justify-center p-6 overflow-hidden"
         initial={{ opacity: 0 }}

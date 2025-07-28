@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 
@@ -26,7 +25,7 @@ export default function Gallery() {
 
   return (
     <>
-      <Header />
+      
       <motion.main
         className="relative min-h-screen flex flex-col items-center justify-center p-6 text-white"
         initial={{ opacity: 0 }}
@@ -44,7 +43,7 @@ export default function Gallery() {
         />
         <div className="absolute inset-0 bg-black/30 -z-10"></div>
 
-        <h1 className="text-4xl text-yellow-400 mb-6 font-bold drop-shadow-lg">
+        <h1 className="text-4xl text-yellow-400 mb-6 font-bold ">
           🐾 LIOSH Gallery
         </h1>
 

@@ -1,4 +1,3 @@
-import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -8,7 +7,7 @@ export default function Staking() {
 
   return (
     <>
-      <Header />
+      
       <motion.main
         className="relative min-h-screen flex flex-col items-center justify-start p-6 pt-28 text-white"
         initial={{ opacity: 0 }}
@@ -27,7 +26,7 @@ export default function Staking() {
         <div className="absolute inset-0 bg-black/50 -z-10"></div>
 
         <motion.h1
-          className="text-5xl font-extrabold text-center text-yellow-400 mb-4 drop-shadow-lg"
+          className="text-5xl font-extrabold text-center text-yellow-400 mb-4 "
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
@@ -43,7 +42,7 @@ export default function Staking() {
           {/* 📊 צד שמאל – סטטוס */}
           <div className="flex-1 space-y-5">
             {/* Progress Bar */}
-            <div className="bg-gray-900 rounded-lg p-6 shadow-lg">
+            <div className="bg-gray-900 rounded-lg p-6 ">
               <h2 className="text-xl font-bold mb-3 text-yellow-300">Pool Status</h2>
               <div className="bg-gray-700 rounded-full h-4 w-full mb-2">
                 <div className="bg-yellow-400 h-4 rounded-full" style={{ width: "25%" }}></div>
@@ -60,7 +59,7 @@ export default function Staking() {
             ].map((item, i) => (
               <motion.div
                 key={i}
-                className="bg-gray-900 p-4 rounded-lg flex justify-between items-center shadow-lg"
+                className="bg-gray-900 p-4 rounded-lg flex justify-between items-center "
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.15 }}
@@ -72,7 +71,7 @@ export default function Staking() {
 
             {/* Rewards Card */}
             <motion.div
-              className="bg-yellow-400 text-black p-4 rounded-lg shadow-lg"
+              className="bg-yellow-400 text-black p-4 rounded-lg "
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
