@@ -6,10 +6,9 @@ import Link from "next/link";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // רשימת הכפתורים עם הנתיבים
+  // ✅ הסרתי את ABOUT מהרשימה
   const menuItems = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
     { name: "Tokenomics", href: "/tokenomics" },
     { name: "Presale", href: "/presale" },
     { name: "Staking", href: "/staking" },
