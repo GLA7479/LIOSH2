@@ -1,59 +1,67 @@
-import { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
-import Image from "next/image";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { motion } from "framer-motion";
 
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const instagramLink = "https://www.instagram.com/liotheshiba21?igsh=NTljMDY4N2EzMWJu";
-
+export default function About() {
   return (
-    <header className="bg-gradient-to-r from-gray-900 to-gray-800 text-yellow-400 shadow-lg fixed w-full z-50">
-      <div className="max-w-7xl mx-auto px-6 h-[70px] flex justify-between items-center">
-        
-        {/* לוגו בצד שמאל */}
-        <a href={instagramLink} target="_blank" className="flex items-center gap-3 relative top-1">
-          <Image
-            src="/images/logo.png"
-            alt="LIOSH Logo"
-            width={95}
-            height={95}
-            className="rounded-full"
-          />
-          <span className="text-3xl font-bold tracking-wide text-yellow-400 font-[Raleway]">
-            LIOSH Token
-          </span>
-        </a>
+    <>
+      <Header />
+      <motion.main
+        className="relative min-h-screen flex flex-col items-center justify-center text-white px-6 pt-24 text-center overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        {/* ✅ Background Video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover -z-10"
+          src="/videos/about-bg.mp4" // 🔹 Replace with your background video
+        />
+        <div className="absolute inset-0 bg-black/50 -z-10"></div>
 
-        {/* תפריט למחשב – בצד ימין */}
-        <div className="flex-1 flex justify-end">
-          <nav className="hidden md:flex space-x-6 text-lg font-semibold font-[Raleway]">
-            {["Home","About","Tokenomics","Presale","Staking","Gallery","Whitepaper","Contact Us"].map((item, i) => (
-              <a key={i} href={instagramLink} target="_blank" className="hover:text-white">{item}</a>
-            ))}
-          </nav>
-        </div>
-
-        {/* תפריט מובייל */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-3xl focus:outline-none ml-4"
+        {/* ✅ Title */}
+        <motion.h1
+          className="text-4xl sm:text-6xl font-extrabold text-yellow-400 mb-6 drop-shadow-lg"
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
         >
-          {isOpen ? <FaTimes /> : <FaBars />}
-        </button>
-      </div>
+          🐾 About LIOSH Token
+        </motion.h1>
 
-      {/* תפריט מובייל פתוח */}
-      {isOpen && (
-        <nav className="md:hidden bg-gray-800 text-yellow-400 px-6 py-4 font-[Raleway]">
-          <div className="flex flex-col items-end space-y-4 text-lg font-semibold">
-            {["Home","About","Tokenomics","Presale","Staking","Gallery","Whitepaper","Contact Us"].map((item, i) => (
-              <a key={i} href={instagramLink} target="_blank" onClick={() => setIsOpen(false)}>
-                {item}
-              </a>
-            ))}
-          </div>
-        </nav>
-      )}
-    </header>
+        {/* ✅ Content */}
+        <motion.div
+          className="max-w-3xl bg-black/50 backdrop-blur-md p-6 rounded-xl shadow-lg text-lg leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          <p className="mb-4">
+            Welcome to <strong>LIOSH Token</strong> – the only meme coin truly inspired by a real Shiba Inu!
+          </p>
+
+          <p className="mb-4">
+            Meet <strong>Leo (LIO)</strong>, our 3-year-old Shiba Inu and the heart of this project. 
+            His playful and loyal spirit inspired us to create a community-driven meme coin 
+            that’s as fun and lovable as he is.
+          </p>
+
+          <p className="mb-4">
+            LIOSH is not just another meme coin – it’s the only one backed by a real Shiba Inu mascot! 
+            Our mission is to build a strong, vibrant, and fun community while bringing new life to 
+            the meme coin world.
+          </p>
+
+          <p className="text-yellow-400 font-bold">
+            🚀 Join us on Leo’s journey – let’s make LIOSH the next legendary meme coin!
+          </p>
+        </motion.div>
+      </motion.main>
+      <Footer />
+    </>
   );
 }

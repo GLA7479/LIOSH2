@@ -15,7 +15,7 @@ export default function Staking() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* ✅ וידאו כרקע */}
+        {/* ✅ רקע וידאו */}
         <video
           autoPlay
           muted
@@ -24,113 +24,103 @@ export default function Staking() {
           className="absolute inset-0 w-full h-full object-cover -z-10"
           src="/videos/staking-bg.mp4"
         />
-        <div className="absolute inset-0 bg-black/40 -z-10"></div>
+        <div className="absolute inset-0 bg-black/50 -z-10"></div>
 
         <motion.h1
-          className="text-4xl font-bold text-center text-yellow-400 mb-6 drop-shadow-lg"
+          className="text-5xl font-extrabold text-center text-yellow-400 mb-4 drop-shadow-lg"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          🔒 STAKING
+          🔒 LIOSH Staking
         </motion.h1>
-
-        <p className="text-center max-w-xl mb-6 text-lg drop-shadow-lg">
-          Stake your LIOSH tokens and earn rewards over a 2-year period. Rewards will be claimable after presale ends.
+        <p className="text-center max-w-2xl mb-10 text-lg text-gray-200">
+          Stake your LIOSH tokens to earn **passive rewards**!  
+          The longer you stake, the more you earn. Rewards will be claimable after the presale ends.
         </p>
 
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          className="bg-yellow-400 text-black font-bold py-2 px-6 rounded-lg hover:bg-yellow-500 mb-6 shadow-lg"
-        >
-          Withdraw Staked Tokens
-        </motion.button>
+        <div className="flex flex-col lg:flex-row gap-10 w-full max-w-5xl">
+          {/* 📊 צד שמאל – סטטוס */}
+          <div className="flex-1 space-y-5">
+            {/* Progress Bar */}
+            <div className="bg-gray-900 rounded-lg p-6 shadow-lg">
+              <h2 className="text-xl font-bold mb-3 text-yellow-300">Pool Status</h2>
+              <div className="bg-gray-700 rounded-full h-4 w-full mb-2">
+                <div className="bg-yellow-400 h-4 rounded-full" style={{ width: "25%" }}></div>
+              </div>
+              <p className="text-sm text-gray-300">25% of pool staked</p>
+            </div>
 
-        {/* ✅ סטטוס */}
-        <div className="space-y-4 mb-6 w-full max-w-md">
-          {["Staked Balance", "Your Stakeable"].map((label, i) => (
+            {/* כרטיסי סטטוס */}
+            {[
+              { label: "Your Staked Balance", value: "0 LIOSH" },
+              { label: "Available to Stake", value: "0 LIOSH" },
+              { label: "Total Staked", value: "1,250,000 LIOSH" },
+              { label: "Current APR", value: "120% / Year" },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                className="bg-gray-900 p-4 rounded-lg flex justify-between items-center shadow-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.15 }}
+              >
+                <span className="font-semibold">{item.label}</span>
+                <span className="text-yellow-300 font-bold">{item.value}</span>
+              </motion.div>
+            ))}
+
+            {/* Rewards Card */}
             <motion.div
-              key={i}
+              className="bg-yellow-400 text-black p-4 rounded-lg shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2 }}
-              className="flex justify-between bg-black/40 p-3 rounded-lg backdrop-blur-md"
+              transition={{ delay: 0.5 }}
             >
-              <span className="font-semibold">{label}</span>
-              <span>0 LIOSH</span>
+              <h3 className="text-lg font-bold mb-1">Estimated Rewards</h3>
+              <p className="text-2xl font-extrabold">0 LIOSH / year</p>
+              <p className="text-sm mt-1">Rewards are updated dynamically based on the pool size.</p>
             </motion.div>
-          ))}
-        </div>
+          </div>
 
-        {/* ✅ קלט סכום */}
-        <motion.div
-          className="flex mb-6 w-full max-w-md"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            placeholder="Enter amount"
-            className="flex-1 px-3 py-2 text-black rounded-l-lg focus:outline-none"
-          />
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            className="bg-yellow-400 px-4 py-2 rounded-r-lg font-bold hover:bg-yellow-500"
+          {/* 📥 צד ימין – טופס סטייקינג */}
+          <motion.div
+            className="flex-1 bg-gray-900 p-6 rounded-lg shadow-xl backdrop-blur-md"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
           >
-            Buy & Stake
-          </motion.button>
-        </motion.div>
+            <h2 className="text-2xl font-bold mb-4 text-yellow-400">Stake Your Tokens</h2>
+            <input
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              placeholder="Enter amount to stake"
+              className="w-full px-4 py-3 text-black rounded-lg mb-4 focus:outline-none"
+            />
 
-        {/* ✅ נתונים נוספים */}
-        <motion.div
-          className="bg-black/40 p-3 rounded-lg mb-4 backdrop-blur-md w-full max-w-md"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-        >
-          <p className="mb-1">
-            <strong>% of Pool:</strong> 0%
-          </p>
-          <p className="mb-1">
-            <strong>Total Staked:</strong> 0 LIOSH
-          </p>
-        </motion.div>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              className="w-full bg-yellow-400 text-black font-bold py-3 rounded-lg hover:bg-yellow-500 transition"
+            >
+              🚀 Stake Tokens
+            </motion.button>
 
-        <motion.div
-          className="bg-black/40 p-3 rounded-lg mb-4 backdrop-blur-md w-full max-w-md"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-        >
-          <p className="font-bold text-yellow-300 text-lg mb-2">
-            Estimated Rewards: 0 LIOSH / year
-          </p>
-          <ul className="text-sm text-gray-200">
-            <li>• Rewards rate is dynamic</li>
-            <li>• Monthly = Rewards ÷ 12</li>
-            <li>• Daily = Rewards ÷ 365</li>
-          </ul>
-        </motion.div>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              className="w-full mt-4 bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition"
+            >
+              💰 Claim Rewards
+            </motion.button>
 
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          className="bg-yellow-400 text-black font-bold py-2 px-6 rounded-lg hover:bg-yellow-500 mb-4 shadow-lg"
-        >
-          Claim Rewards
-        </motion.button>
-
-        <motion.div
-          className="bg-black/40 p-3 rounded-lg backdrop-blur-md w-full max-w-md flex justify-between"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-        >
-          <span className="font-semibold">Current Rewards</span>
-          <span>0 per ETH Block</span>
-        </motion.div>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              className="w-full mt-4 bg-red-500 text-white font-bold py-3 rounded-lg hover:bg-red-600 transition"
+            >
+              🔓 Withdraw Tokens
+            </motion.button>
+          </motion.div>
+        </div>
       </motion.main>
       <Footer />
     </>

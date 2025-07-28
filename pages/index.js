@@ -7,7 +7,6 @@ export default function Home() {
   const videoRef = useRef(null);
   const [currentVideo, setCurrentVideo] = useState(0);
 
-  // ✅ שני סרטונים שירוצו ברצף
   const videos = ["/videos/home-bg1.mp4", "/videos/home-bg2.mp4"];
 
   useEffect(() => {
@@ -27,9 +26,8 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* ✅ רקע וידאו מתחלף */}
         <video
-          key={currentVideo} // רענון בכל החלפה
+          key={currentVideo}
           ref={videoRef}
           autoPlay
           muted
@@ -39,12 +37,22 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-black bg-opacity-60 z-0"></div>
 
-        <div className="relative z-10 text-center max-w-2xl p-4">
+        <div className="relative z-10 text-center max-w-3xl p-4">
           <h1 className="text-4xl sm:text-6xl font-extrabold text-yellow-400 mb-4">
             LIOSH Token
           </h1>
-          <p className="text-lg sm:text-xl mb-6 text-white">
-            The ultimate meme coin inspired by Shiba Inu! Join our presale and be part of the next crypto revolution.
+
+          <p className="text-lg sm:text-xl mb-4 text-white">
+            LIOSH is the ultimate meme coin inspired by our real Shiba Inu dog – Leo (LIO).
+            At just 3 years old, Leo has already become the heart and soul of this project.
+            LIOSH is the only meme coin backed by a real Shiba Inu mascot, bringing fun and
+            community power together!
+          </p>
+
+          <p className="text-md sm:text-lg mb-6 text-gray-300">
+            Our goal is to create a strong community-driven cryptocurrency that combines
+            the love for Shiba Inu with real-world utility, staking rewards, and exciting
+            upcoming partnerships. Join us early and be part of Leo’s journey to the moon! 🚀
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
