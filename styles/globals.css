@@ -19,7 +19,6 @@
   }
 }
 
-/* ✅ מבטיח שאין מרווחים מיותרים ומונע חפיפה עם ה־Header */
 body {
   margin: 0;
   padding: 0;
@@ -27,4 +26,41 @@ body {
 
 main {
   padding-top: 0 !important;
+}
+
+/* 🔹 זוהר עדין רק לשורה העליונה */
+.title-glow {
+  font-weight: 900;
+  text-shadow: 0 0 2px rgba(80, 200, 255, 0.5),
+               0 0 4px rgba(255, 140, 220, 0.4);
+}
+
+/* 🔹 ללא צל כלל */
+.title-no-glow {
+  font-weight: 900;
+  text-shadow: none !important;
+}
+
+/* ✅ גרדיאנט חי */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient {
+  background: linear-gradient(270deg, #56ccf2, #ec4899, #56ccf2);
+  background-size: 300% 300%;
+  animation: gradientMove 5s ease infinite;
+}
+
+/* ✅ Pulse עדין ללוגו */
+@keyframes logoPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.logo-pulse {
+  animation: logoPulse 2s infinite;
 }

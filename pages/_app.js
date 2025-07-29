@@ -6,7 +6,7 @@ import "../i18n"; // ✅ טעינת i18n פעם אחת עבור כל האפלי�
 export default function MyApp({ Component, pageProps }) {
   return (
     <Layout>
-      <div style={{ paddingTop: "90px" }}>
+      <div style={{ paddingTop: "64px" }}>
         <Component {...pageProps} />
       </div>
       <FloatingButton />
