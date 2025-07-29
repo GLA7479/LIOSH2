@@ -5,11 +5,10 @@ export default function BackgroundVideo({ src, poster }) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      const onLoad = () => video.load();
-      window.addEventListener("load", onLoad);
-      return () => window.removeEventListener("load", onLoad);
+    if (videoRef.current) {
+      const loadVideo = () => videoRef.current.load();
+      window.addEventListener("load", loadVideo);
+      return () => window.removeEventListener("load", loadVideo);
     }
   }, []);
 
