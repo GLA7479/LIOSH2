@@ -3,12 +3,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function Home() {
-  const [showContent, setShowContent] = useState(false);
-  useEffect(() => {
-    const timer = setTimeout(() => setShowContent(true), 5000);
-    return () => clearTimeout(timer);
-  }, []);
-
   const videoRef = useRef(null);
   const [currentVideo, setCurrentVideo] = useState(0);
   const [videoError, setVideoError] = useState(false);
@@ -42,8 +36,6 @@ export default function Home() {
 
   return (
     <>
-      {showContent ? (
-        <>
       <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden">
         {!videoError ? (
           <video
@@ -270,8 +262,4 @@ export default function Home() {
       </motion.section>
     </>
   );
-
-        </>
-      ) : null}
-    </>
-  );
+}
