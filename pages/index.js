@@ -1,4 +1,3 @@
-import BackgroundVideo from "../components/BackgroundVideo";
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
