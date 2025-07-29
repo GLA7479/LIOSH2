@@ -5,11 +5,14 @@ import { motion } from "framer-motion";
 export default function Home() {
   const videoRef = useRef(null);
   const [currentVideo, setCurrentVideo] = useState(0);
+  const [videoError, setVideoError] = useState(false);
   const videos = ["/videos/home-bg1.mp4", "/videos/home-bg2.mp4"];
 
   const [rotate, setRotate] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const video = videoRef.current;
     if (video) {
       video.onended = () => {
@@ -33,17 +36,27 @@ export default function Home() {
 
   return (
     <>
-      {/* 🔹 HERO */}
       <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden">
-        <video
-          key={currentVideo}
-          ref={videoRef}
-          autoPlay
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover -z-10"
-          src={videos[currentVideo]}
-        />
+        {!videoError ? (
+          <video
+            key={currentVideo}
+            ref={videoRef}
+            autoPlay
+            muted
+            playsInline
+            preload="none"
+            onError={() => setVideoError(true)}
+            className="absolute inset-0 w-full h-full object-cover -z-10"
+            src={videos[currentVideo]}
+          />
+        ) : (
+          <img
+            src="/images/home-fallback.jpg"
+            alt="Background"
+            className="absolute inset-0 w-full h-full object-cover -z-10"
+          />
+        )}
+
         <div className="absolute inset-0 bg-black bg-opacity-60 -z-10"></div>
 
         <motion.div
