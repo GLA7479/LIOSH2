@@ -37,8 +37,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-black bg-opacity-70 z-0"></div>
 
         <div className="relative z-10 text-center max-w-3xl p-4">
+          {/* 🔹 כותרת עם גרדיאנט */}
           <motion.h1
-            className="flex justify-center gap-1 text-5xl sm:text-7xl font-extrabold text-amber-300 mb-10 tracking-wide"
+            className="flex justify-center gap-1 text-5xl sm:text-7xl font-extrabold mb-12 tracking-wide 
+                       bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -49,27 +51,23 @@ export default function Home() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
-                className="hover:text-white hover:scale-125 transition-transform"
+                className="hover:scale-125 transition-transform"
               >
                 {char}
               </motion.span>
             ))}
           </motion.h1>
 
-          <p className="text-xl sm:text-2xl mb-6 text-gray-200">
+          {/* 🔹 פסקה ראשונה */}
+          <p className="text-xl sm:text-2xl mb-8 text-gray-200">
             LIOSH is the ultimate meme coin inspired by our real Shiba Inu dog –{" "}
             <strong className="text-amber-300">LIO</strong>. At just 3 years old, LIO has already
             become the heart and soul of this project. LIOSH is the only meme coin backed by a
             real Shiba Inu mascot, bringing fun and community power together!
           </p>
 
-          <p className="text-lg sm:text-xl mb-8 text-gray-300">
-            Our mission is to build a strong, community-driven cryptocurrency that celebrates the
-            love for Shiba Inu while offering real-world utility, staking rewards, and exciting
-            upcoming partnerships. Join us early and be part of LIO’s journey to the moon! 🚀
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* 🔹 כפתורי Presale ו-Stake בין הפסקאות */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link href="/presale">
               <button className="bg-amber-300 text-black px-8 py-4 rounded-lg font-bold text-xl hover:bg-amber-400 transition transform hover:scale-110">
                 🚀 Join Presale
@@ -81,6 +79,13 @@ export default function Home() {
               </button>
             </Link>
           </div>
+
+          {/* 🔹 פסקה שנייה */}
+          <p className="text-lg sm:text-xl mb-8 text-gray-300">
+            Our mission is to build a strong, community-driven cryptocurrency that celebrates the
+            love for Shiba Inu while offering real-world utility, staking rewards, and exciting
+            upcoming partnerships. Join us early and be part of LIO’s journey to the moon! 🚀
+          </p>
         </div>
       </motion.main>
 
@@ -126,17 +131,6 @@ export default function Home() {
               📊 Learn More
             </button>
           </Link>
-        </div>
-      </section>
-
-      {/* 📩 Contact Section */}
-      <section className="bg-gray-800 text-gray-200 py-16">
-        <h2 className="text-4xl text-amber-300 font-bold text-center mb-6">📩 Get in Touch</h2>
-        <div className="flex justify-center space-x-6 text-xl">
-          <a href="mailto:contact@liosh.com" className="hover:text-amber-300">📧 Email</a>
-          <a href="#" className="hover:text-amber-300">🐦 Twitter</a>
-          <a href="#" className="hover:text-amber-300">💬 Telegram</a>
-          <a href="#" className="hover:text-amber-300">🌐 Discord</a>
         </div>
       </section>
     </>

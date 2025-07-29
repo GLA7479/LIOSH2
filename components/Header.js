@@ -2,26 +2,42 @@ import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { i18n } = useTranslation();
 
   const menuItems = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Tokenomics", href: "/tokenomics" },
-    { name: "Presale", href: "/presale" },
-    { name: "Staking", href: "/staking" },
-    { name: "Gallery", href: "/gallery" },
-    { name: "Whitepaper", href: "/whitepaper" },
-    { name: "Contact Us", href: "/contact" },
+    { key: "home", href: "/" },
+    { key: "about", href: "/about" },
+    { key: "tokenomics", href: "/tokenomics" },
+    { key: "presale", href: "/presale" },
+    { key: "staking", href: "/staking" },
+    { key: "gallery", href: "/gallery" },
+    { key: "whitepaper", href: "/whitepaper" },
+    { key: "contact", href: "/contact" },
+  ];
+
+  const languages = [
+    { code: "en", label: "English" },
+    { code: "he", label: "עברית" },
+    { code: "ar", label: "العربية" },
+    { code: "ja", label: "日本語" },
+    { code: "zh", label: "中文" },
+    { code: "ko", label: "한국어" },
+    { code: "de", label: "Deutsch" },
+    { code: "nl", label: "Nederlands" },
+    { code: "fr", label: "Français" },
+    { code: "pl", label: "Polski" },
+    { code: "ro", label: "Română" },
+    { code: "ru", label: "Русский" },
+    { code: "tr", label: "Türkçe" },
   ];
 
   return (
-    <header className="bg-gradient-to-r from-gray-900 to-gray-800 text-yellow-400  fixed w-full z-50">
+    <header className="bg-gradient-to-r from-gray-900 to-gray-800 text-yellow-400 fixed w-full z-50">
       <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-
-        {/* לוגו + טקסט */}
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/images/logo.png"
@@ -40,7 +56,18 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* כפתור ☰ לפתיחה/סגירה */}
+        <select
+          onChange={(e) => i18n.changeLanguage(e.target.value)}
+          value={i18n.language}
+          className="bg-gray-800 text-yellow-400 px-3 py-1 rounded-md mr-4"
+        >
+          {languages.map((lang) => (
+            <option key={lang.code} value={lang.code}>
+              {lang.label}
+            </option>
+          ))}
+        </select>
+
         <button
           className="text-yellow-400 text-3xl"
           onClick={() => setIsOpen(!isOpen)}
@@ -48,13 +75,11 @@ export default function Header() {
           {isOpen ? <FaTimes /> : <FaBars />}
         </button>
 
-        {/* תפריט נפתח – גדול יותר, וידאו כרקע */}
         {isOpen && (
           <div
-            className="fixed right-0 top-24 w-96 flex flex-col items-end py-6 space-y-4  z-50 overflow-hidden"
+            className="fixed right-0 top-24 w-96 flex flex-col items-end py-6 space-y-4 z-50 overflow-hidden"
             style={{ borderRadius: "8px" }}
           >
-            {/* וידאו כרקע */}
             <video
               autoPlay
               loop
@@ -65,14 +90,11 @@ export default function Header() {
             >
               <source src="/videos/menu-bg.mp4" type="video/mp4" />
             </video>
-
-            {/* שכבה כהה מעל הווידאו */}
             <div className="absolute inset-0 bg-black bg-opacity-30"></div>
 
-            {/* פריטי התפריט */}
             {menuItems.map((item) => (
               <Link
-                key={item.name}
+                key={item.key}
                 href={item.href}
                 className="relative text-2xl font-semibold pr-6"
                 style={{
@@ -82,7 +104,7 @@ export default function Header() {
                 }}
                 onClick={() => setIsOpen(false)}
               >
-                {item.name}
+                {item.key}
               </Link>
             ))}
           </div>

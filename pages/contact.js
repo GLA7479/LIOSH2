@@ -1,4 +1,3 @@
-import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 
 export default function Contact() {
@@ -20,12 +19,17 @@ export default function Contact() {
         />
         <div className="absolute inset-0 bg-black/50 -z-10"></div>
 
+        {/* 🔹 כותרת עם גרדיאנט אחיד */}
         <motion.h1
-          className="text-4xl sm:text-5xl font-extrabold text-yellow-400 mb-6"
+          className="text-4xl sm:text-5xl font-extrabold mb-6 flex items-center justify-center gap-2"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
         >
-          📩 Contact Us
+          <span>📩</span>
+          <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent">
+            Contact Us
+          </span>
         </motion.h1>
 
         <p className="text-lg max-w-2xl text-center mb-8">
@@ -52,7 +56,6 @@ export default function Contact() {
           ))}
         </div>
       </motion.main>
-      <Footer />
     </>
   );
 }

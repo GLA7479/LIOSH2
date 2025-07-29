@@ -1,6 +1,5 @@
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import { FaUsers, FaLock, FaGift, FaChartLine, FaBullhorn } from "react-icons/fa";
 
@@ -37,7 +36,6 @@ export default function Tokenomics() {
 
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
-      {/* Background Video */}
       <video
         autoPlay
         muted
@@ -48,16 +46,19 @@ export default function Tokenomics() {
       />
       <div className="absolute inset-0 bg-black/80 -z-10 backdrop-blur-sm"></div>
 
-      {/* Header */}
       <div className="text-center pt-10 px-3">
         <motion.h1
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-extrabold text-yellow-400"
+          className="text-4xl md:text-5xl font-extrabold flex items-center justify-center gap-2"
         >
-          📊 Tokenomics
+          <span>📊</span>
+          <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent">
+            Tokenomics
+          </span>
         </motion.h1>
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -68,7 +69,6 @@ export default function Tokenomics() {
         </motion.p>
       </div>
 
-      {/* Pie Chart + Info Cards */}
       <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-6 px-3">
         <div className="relative w-[260px] md:w-[350px] lg:w-[400px]">
           <Pie data={data} options={options} />
@@ -96,7 +96,6 @@ export default function Tokenomics() {
         </div>
       </div>
 
-      {/* Token Details Table */}
       <div className="max-w-4xl mx-auto mt-10 px-3 pb-16">
         <h2 className="text-2xl font-bold text-center mb-5 text-yellow-400">
           📄 Token Details
@@ -128,8 +127,6 @@ export default function Tokenomics() {
           </table>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }

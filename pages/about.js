@@ -1,4 +1,3 @@
-import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -128,8 +127,6 @@ export default function About() {
           </section>
         </div>
       </motion.main>
-
-      <Footer />
     </>
   );
 }

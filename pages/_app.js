@@ -1,15 +1,15 @@
 import "../styles/globals.css";
 import FloatingButton from "../components/FloatingButton";
-import Header from "../components/Header";
+import Layout from "../components/Layout";
+import "../i18n"; // ✅ טעינת i18n פעם אחת עבור כל האפליקציה
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <>
-      <Header />
-      <main className="pt-20">
+    <Layout>
+      <div style={{ paddingTop: "90px" }}>
         <Component {...pageProps} />
-      </main>
+      </div>
       <FloatingButton />
-    </>
+    </Layout>
   );
 }

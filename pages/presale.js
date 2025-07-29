@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Footer from "../components/Footer";
 import Head from "next/head";
 import { motion } from "framer-motion";
 
@@ -55,7 +54,6 @@ export default function Presale() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* ✅ וידאו כרקע */}
         <video
           autoPlay
           muted
@@ -66,9 +64,9 @@ export default function Presale() {
         />
         <div className="absolute inset-0 bg-black/50 -z-10"></div>
 
-        {/* ✅ כותרת עם אפקט הגרדיאנט המקורי אבל בעובי בינוני */}
+        {/* 🔹 כותרת עם גרדיאנט חדש */}
         <motion.h1
-          className="text-5xl font-medium mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+          className="text-5xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -76,6 +74,7 @@ export default function Presale() {
           BUY LIOSH
         </motion.h1>
 
+        {/* שאר הקוד נשאר ללא שינוי */}
         <motion.p
           className="text-2xl font-bold text-yellow-400 mb-2"
           initial={{ opacity: 0 }}
@@ -148,10 +147,10 @@ export default function Presale() {
           </button>
         </motion.div>
 
-        <p className="text-pink-400 font-bold text-lg mt-4">PRESALE IS COMING SOON</p>
+        <p className="text-pink-400 font-bold text-lg mt-4">
+          PRESALE IS COMING SOON
+        </p>
       </motion.main>
-
-      <Footer />
     </>
   );
 }

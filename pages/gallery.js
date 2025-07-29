@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 
 export default function Gallery() {
@@ -25,27 +24,34 @@ export default function Gallery() {
 
   return (
     <>
-      
       <motion.main
         className="relative min-h-screen flex flex-col items-center justify-center p-6 text-white"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* ✅ רקע וידאו אחד */}
         <video
           autoPlay
           muted
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover -z-10"
-          src="/videos/gallery-bg.mp4" // 🔹 שם הסרטון שלך
+          src="/videos/gallery-bg.mp4"
         />
         <div className="absolute inset-0 bg-black/30 -z-10"></div>
 
-        <h1 className="text-4xl text-yellow-400 mb-6 font-bold ">
-          🐾 LIOSH Gallery
-        </h1>
+        {/* 🔹 כותרת עם גרדיאנט חדש */}
+        <motion.h1
+          className="text-4xl sm:text-5xl font-extrabold mb-6 flex items-center justify-center gap-2"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <span>🐾</span>
+          <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent">
+            LIOSH Gallery
+          </span>
+        </motion.h1>
 
         {items.length === 0 ? (
           <p className="text-gray-200">Loading gallery...</p>
@@ -124,7 +130,6 @@ export default function Gallery() {
           </div>
         )}
       </motion.main>
-      <Footer />
     </>
   );
 }
