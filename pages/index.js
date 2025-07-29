@@ -31,12 +31,13 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-black bg-opacity-60 -z-10"></div>
 
-        <div className="relative z-10 max-w-3xl p-4">
+        {/* ✅ הרמנו הכל למעלה עם -mt-20 */}
+        <div className="relative z-10 max-w-3xl p-4 -mt-20">
           <h1 className="text-5xl sm:text-6xl font-extrabold text-yellow-400 mb-4">
             LIOSH Token
           </h1>
 
-          <p className="text-xl sm:text-2xl text-white mb-8">
+          <p className="text-lg sm:text-2xl text-gray-100 font-medium mb-8 leading-relaxed">
             The ultimate meme coin inspired by Shiba Inu! Join our presale and be
             part of the next crypto revolution.
           </p>
@@ -56,17 +57,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🔹 שתי הפסקאות עם עיצוב משופר */}
-      <section className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16 text-center shadow-lg">
-        <div className="max-w-4xl mx-auto space-y-8 px-6">
-          <p className="text-xl sm:text-2xl text-gray-100 font-medium leading-relaxed">
+      {/* 🔹 Mission & Vision Section */}
+      <section className="relative py-20 text-center">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-8 text-pink-400">
+            🌟 Our Mission & Vision
+          </h2>
+
+          <p className="text-lg sm:text-2xl text-gray-100 font-medium mb-6 leading-relaxed">
             LIOSH is the ultimate meme coin inspired by our real Shiba Inu dog –{" "}
-            <strong className="text-yellow-300 font-semibold">LIO</strong>. At just 3 years old, LIO has already
+            <strong className="text-yellow-300">LIO</strong>. At just 3 years old, LIO has already
             become the heart and soul of this project. LIOSH is the only meme coin backed by a
             real Shiba Inu mascot, bringing fun and community power together!
           </p>
 
-          <p className="text-xl sm:text-2xl text-gray-200 font-medium leading-relaxed">
+          <p className="text-lg sm:text-2xl text-gray-200 font-medium leading-relaxed">
             Our mission is to build a strong, community-driven cryptocurrency that celebrates the
             love for Shiba Inu while offering real-world utility, staking rewards, and exciting
             upcoming partnerships. Join us early and be part of LIO’s journey to the moon! 🚀
@@ -76,7 +81,9 @@ export default function Home() {
 
       {/* 🚀 Roadmap Section */}
       <section className="bg-black text-gray-200 py-16">
-        <h2 className="text-5xl text-amber-300 font-bold text-center mb-10">🚀 Roadmap</h2>
+        <h2 className="text-4xl sm:text-5xl text-amber-300 font-extrabold text-center mb-10">
+          🚀 Roadmap
+        </h2>
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 text-center px-4">
           {[
             { title: "Phase 1", text: "Token Launch, Website, Community Building" },
@@ -84,9 +91,14 @@ export default function Home() {
             { title: "Phase 3", text: "Exchange Listings, Staking Launch" },
             { title: "Phase 4", text: "Major Partnerships & Metaverse Utility" },
           ].map((item, i) => (
-            <div key={i} className="p-6 bg-gray-800 rounded-lg ">
+            <div
+              key={i}
+              className="p-6 bg-gray-800 rounded-lg shadow-lg hover:scale-105 transition"
+            >
               <h3 className="text-2xl font-bold mb-3 text-amber-300">{item.title}</h3>
-              <p className="text-lg">{item.text}</p>
+              <p className="text-lg sm:text-xl text-gray-100 leading-relaxed font-medium">
+                {item.text}
+              </p>
             </div>
           ))}
         </div>
